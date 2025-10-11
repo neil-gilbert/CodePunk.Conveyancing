@@ -1,0 +1,16 @@
+site_name: Conveyancing Portal
+site_description: AI-powered conveyancing portal for buyers, sellers, and solicitors
+repo_url: https://github.com/yourname/conveyancing-portal
+theme:
+  name: material
+  palette:
+    primary: blue
+    accent: deep orange
+nav:
+  - Home: index.md
+  - MVP Backlog: 01-mvp-backlog.md
+  - System Design: 02-system-design.md
+  - Sequence Diagrams: 03-sequence-diagrams.md
+  - Pitch Deck: 04-pitch-deck-outline.md
+  - ROI Model: 05-roi-model.md
+  - Next Steps: 06-next-steps.md

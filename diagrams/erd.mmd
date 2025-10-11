@@ -1,0 +1,10 @@
+erDiagram
+  PARTY ||--o{ DOCUMENT : uploads
+  MATTER ||--o{ DOCUMENT : has
+  MATTER }o--|| PROPERTY : about
+  MATTER ||--o{ SEARCH : has
+  MATTER ||--o{ ENQUIRY : has
+  MATTER ||--o{ FILING : has
+  MATTER ||--o{ MESSAGE : has
+  MATTER ||--o{ AUDITLOG : records
+  PARTY }o--o{ MATTER : participates
