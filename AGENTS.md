@@ -47,6 +47,8 @@ Key reminders for agents: always read AGENTS.md files; follow test-first and ver
   - Tests to add (behavior scenarios)
   - Risks/assumptions and rollout plan
 - Keep PRs small and focused (ideally < 400 LOC diff excluding generated code).
+- Always create a Pull Request for changes; do not push directly to `main`.
+- Before opening a PR, run tests locally: `dotnet build` and `dotnet test`.
 - Each PR must:
   - Include tests (failing first, then passing)
   - Pass CI (build + tests)
@@ -61,6 +63,7 @@ Key reminders for agents: always read AGENTS.md files; follow test-first and ver
 
 ## 6) CI/CD
 
+- Run tests locally before pushing or opening a PR to reduce CI churn.
 - All tests must pass in CI. Add/adjust tests as part of your change.
 - If adding tooling (lint/format), include config and run in CI.
 
@@ -84,4 +87,3 @@ Key reminders for agents: always read AGENTS.md files; follow test-first and ver
 ## 9) About this File
 
 This is the file I (the coding agent) always read for repo-specific working agreements. Place additional AGENTS.md files in subfolders to override or augment guidance for those areas.
-
