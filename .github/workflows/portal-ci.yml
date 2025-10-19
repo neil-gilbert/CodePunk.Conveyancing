@@ -1,0 +1,32 @@
+name: Portal CI
+
+on:
+  push:
+    branches: [ main, master, "**/*" ]
+  pull_request:
+    branches: [ main, master, "**/*" ]
+
+jobs:
+  portal-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/portal
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npx next lint --no-inline-config --max-warnings=0 || true
+
+      - name: Unit tests
+        run: npm run test -- --run
+

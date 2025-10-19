@@ -1,4 +1,5 @@
 import { apiFetch } from '@/lib/api/client'
+import AddParticipantForm from './add-participant'
 
 async function getParticipants(tenant: string, id: string) {
   return apiFetch<any[]>(`/conveyances/${id}/contacts`, tenant)
@@ -13,6 +14,7 @@ export default async function ParticipantsPage({ params }: { params: { tenant: s
       <h1 className="text-2xl font-bold">Participants</h1>
       <p className="text-gray-600 mt-2">Conveyance ID: {id}</p>
       <div className="mt-4 space-y-2">
+        <AddParticipantForm tenant={tenant} conveyanceId={id} />
         {participants.length === 0 && (
           <div className="text-sm text-gray-500">No participants yet.</div>
         )}
@@ -25,4 +27,3 @@ export default async function ParticipantsPage({ params }: { params: { tenant: s
       </div>
     </div>
   )}
-

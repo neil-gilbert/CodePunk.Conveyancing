@@ -1,4 +1,5 @@
 import { apiFetch, type Conveyance } from '@/lib/api/client'
+import CreateMatter from './create-matter'
 
 export default async function MattersPage({ params }: { params: { tenant: string } }) {
   const tenant = params.tenant
@@ -16,6 +17,9 @@ export default async function MattersPage({ params }: { params: { tenant: string
     <div>
       <h1 className="text-2xl font-bold mb-4">Matters</h1>
       <p className="text-gray-600">Search and manage matters for tenant <span className="font-semibold">{tenant}</span>.</p>
+      <div className="mt-4">
+        <CreateMatter tenant={tenant} />
+      </div>
       {sample && (
         <div className="mt-4 border rounded p-4">
           <div className="font-semibold">Example Conveyance</div>
@@ -28,4 +32,3 @@ export default async function MattersPage({ params }: { params: { tenant: string
     </div>
   )
 }
-
