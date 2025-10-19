@@ -15,6 +15,12 @@ using CodePunk.Conveyancing.Api.Features.Outbox.Create;
 using CodePunk.Conveyancing.Api.Features.Outbox.Mutate;
 using CodePunk.Conveyancing.Api.Infrastructure.Tenancy;
 using CodePunk.Conveyancing.Api.Features.Admin.Tenants;
+using CodePunk.Conveyancing.Api.Features.Contacts.Create;
+using CodePunk.Conveyancing.Api.Features.Contacts.Get;
+using CodePunk.Conveyancing.Api.Features.Contacts.List;
+using CodePunk.Conveyancing.Api.Features.ConveyanceContacts.Add;
+using CodePunk.Conveyancing.Api.Features.ConveyanceContacts.List;
+using CodePunk.Conveyancing.Api.Features.Contacts.ListConveyancesForContact;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +64,12 @@ api.MapListOutboxEndpoints();
 api.MapGetOutboxEndpoints();
 api.MapCreateOutboxEndpoints();
 api.MapMutateOutboxEndpoints();
+api.MapCreateContactEndpoints();
+api.MapGetContactEndpoints();
+api.MapListContactsEndpoints();
+api.MapAddConveyanceContactEndpoints();
+api.MapListConveyanceContactsEndpoints();
+api.MapListConveyancesForContactEndpoints();
 
 app.MapHealthEndpoints();
 app.MapAgentEndpoints();

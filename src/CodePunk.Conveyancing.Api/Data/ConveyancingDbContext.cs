@@ -20,6 +20,8 @@ public sealed class ConveyancingDbContext : DbContext
     public DbSet<DraftDocument> Drafts => Set<DraftDocument>();
     public DbSet<OutboxMessage> Outbox => Set<OutboxMessage>();
     public DbSet<Tenant> Tenants => Set<Tenant>();
+    public DbSet<Contact> Contacts => Set<Contact>();
+    public DbSet<ConveyanceContact> ConveyanceContacts => Set<ConveyanceContact>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -81,6 +83,30 @@ public sealed class ConveyancingDbContext : DbContext
 
             b.HasIndex(x => x.ConveyanceId);
             b.HasIndex(x => new { x.ConveyanceId, x.Status });
+            b.HasQueryFilter(e => EF.Property<Guid>(e, "TenantId") == (_tenantProvider.TenantId ?? Guid.Empty));
+        });
+
+        modelBuilder.Entity<Contact>(b =>
+        {
+            b.HasKey(x => x.Id);
+            b.Property<Guid>("TenantId");
+            b.HasIndex("TenantId");
+            b.Property(x => x.Name).HasMaxLength(256);
+            b.Property(x => x.Email).HasMaxLength(256);
+            b.Property(x => x.Phone).HasMaxLength(64);
+            b.HasIndex("TenantId", nameof(Contact.Email));
+            b.HasQueryFilter(e => EF.Property<Guid>(e, "TenantId") == (_tenantProvider.TenantId ?? Guid.Empty));
+        });
+
+        modelBuilder.Entity<ConveyanceContact>(b =>
+        {
+            b.HasKey(x => x.Id);
+            b.Property<Guid>("TenantId");
+            b.HasIndex("TenantId");
+            b.Property(x => x.Role).HasConversion<int>();
+            b.HasIndex(x => new { x.ConveyanceId, x.ContactId });
+            b.HasIndex(x => new { x.ConveyanceId, x.Role });
+            b.HasIndex("TenantId", nameof(ConveyanceContact.ConveyanceId), nameof(ConveyanceContact.ContactId), nameof(ConveyanceContact.Role)).IsUnique();
             b.HasQueryFilter(e => EF.Property<Guid>(e, "TenantId") == (_tenantProvider.TenantId ?? Guid.Empty));
         });
     }
