@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-color: #1e40af; /* default indigo-800 */
+  --brand-foreground: #ffffff;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-gray-900;
+}
+
+.app-container {
+  @apply min-h-screen flex;
+}
+
+.sidebar {
+  @apply w-64 bg-gray-50 border-r border-gray-200;
+}
+
+.content {
+  @apply flex-1 p-6;
+}
+
